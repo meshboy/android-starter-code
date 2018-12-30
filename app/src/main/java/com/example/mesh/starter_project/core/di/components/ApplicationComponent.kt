@@ -1,5 +1,6 @@
 package com.example.mesh.starter_project.core.di.components
 
+import com.example.mesh.starter_project.MainActivity
 import com.example.mesh.starter_project.core.di.modules.ContextModule
 import com.example.mesh.starter_project.core.di.modules.NetworkModule
 import dagger.Component
@@ -11,4 +12,5 @@ import dagger.Component
 @Component(modules = [NetworkModule::class, ContextModule::class])
 interface ApplicationComponent {
 
+    fun inject (mainActivity: MainActivity)
 }

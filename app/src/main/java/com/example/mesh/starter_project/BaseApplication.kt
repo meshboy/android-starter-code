@@ -15,10 +15,5 @@ class BaseApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-
-        DaggerApplicationComponent.builder()
-            .contextModule(ContextModule(this))
-            .networkModule(NetworkModule())
-            .build()
     }
 }

@@ -10,6 +10,7 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import java.io.File
@@ -54,9 +55,10 @@ class NetworkModule {
     @Named("RetrofitMod")
     fun retrofit(providesGson: Gson, providesOkHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create(providesGson))
-            .client(providesOkHttpClient)
             .baseUrl(BuildConfig.APP_BASE_URL)
+            .client(providesOkHttpClient)
+            .addConverterFactory(GsonConverterFactory.create(providesGson))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
 }
